@@ -22,7 +22,7 @@ class Book(models.Model):
         ]
     
     def __str__(self):
-        return f'{self.title, self.author}'
+        return f'{self.title} by: {self.author}'
 
 
 class Tracker(models.Model):
@@ -40,7 +40,7 @@ class Tracker(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_title')
 
     def __str__(self):
-        return f'{self.book}'
+        return self.book
 
 
 class Comments(models.Model):
@@ -52,4 +52,4 @@ class Comments(models.Model):
     privacy = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.created_at}'
+        return f'{self.book}, {self.created_at}'

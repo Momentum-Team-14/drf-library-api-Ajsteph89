@@ -10,7 +10,7 @@ urlpatterns = [
     path('tracker/', views.TrackerList.as_view(), name='tracker-list'),
     path('tracker/<int:pk>/', views.TrackerDetail.as_view(), name='tracker-detail'),
     path('comments/', views.CommentsList.as_view(), name='comments-list'),
-    path('comments/<int:pk>/', views.CommentsDetail.as_view(), name='comments-list'),
+    path('comments/<int:pk>/', views.CommentsDetail.as_view(), name='comments-detail'),
 
 ]
 
