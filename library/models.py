@@ -22,7 +22,7 @@ class Book(models.Model):
         ]
     
     def __str__(self):
-        return self.title, self.author
+        return f'{self.title, self.author}'
 
 
 class Tracker(models.Model):
@@ -40,11 +40,11 @@ class Tracker(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_title')
 
     def __str__(self):
-        return self.book
+        return f'{self.book}'
 
 
 class Comments(models.Model):
-    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name = 'user')
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name = 'comments')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book')
     created_at = models.DateField(db_index=True, auto_now_add=True, null=True)
     notes = models.TextField()
@@ -52,4 +52,4 @@ class Comments(models.Model):
     privacy = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.created_at
+        return f'{self.created_at}'
