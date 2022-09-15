@@ -40,7 +40,7 @@ class Tracker(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_title')
 
     def __str__(self):
-        return self.book
+        return f'{self.book}'
 
 
 class Comments(models.Model):

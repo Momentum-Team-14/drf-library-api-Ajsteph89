@@ -26,7 +26,7 @@ class TrackerList (generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer): 
-        serializer.save(owner=self.request.user)
+        serializer.save(user=self.request.user)
 
 class TrackerDetail (generics.RetrieveUpdateDestroyAPIView):
     queryset = Tracker.objects.all()
@@ -39,7 +39,7 @@ class CommentsList (generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def perform_create(self, serializer): 
-        serializer.save(owner=self.request.user)
+        serializer.save(user=self.request.user)
 
 class CommentsDetail (generics.RetrieveUpdateDestroyAPIView):
     queryset = Comments.objects.all()
