@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, mixins
 from .models import Book, Tracker, Comments
 from .serializers import BookSerializer, TrackerSerializer, CommentsSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+
 # Create your views here.
 
 
@@ -13,17 +14,17 @@ from rest_framework.reverse import reverse
 class BookList(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class TrackerList (generics.ListCreateAPIView):
     queryset = Tracker.objects.all()
     serializer_class = TrackerSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
     def perform_create(self, serializer): 
         serializer.save(user=self.request.user)
@@ -31,12 +32,12 @@ class TrackerList (generics.ListCreateAPIView):
 class TrackerDetail (generics.RetrieveUpdateDestroyAPIView):
     queryset = Tracker.objects.all()
     serializer_class = TrackerSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 class CommentsList (generics.ListCreateAPIView):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
     def perform_create(self, serializer): 
         serializer.save(user=self.request.user)
@@ -44,7 +45,7 @@ class CommentsList (generics.ListCreateAPIView):
 class CommentsDetail (generics.RetrieveUpdateDestroyAPIView):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticatedOrReadOnly,))
