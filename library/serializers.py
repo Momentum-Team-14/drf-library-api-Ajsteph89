@@ -13,7 +13,7 @@ class BookSerializer(serializers.ModelSerializer):
 
 
 class TrackerSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = Tracker
         fields = ('status', 'user', 'book', )
